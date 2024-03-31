@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Đánh Giá</title>
+    <style>
+        .container {
+            margin: 50px auto;
+            width: 80%;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #reviewResult {
+            margin-top: 20px;
+            border-top: 2px solid #ccc;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Form Đánh Giá</h2>
+    <form id="reviewForm">
+        <label for="name">Tên:</label>
+        <input type="text" id="name" name="name" required>
+        
+        <label for="rating">Đánh Giá:</label>
+        <select id="rating" name="rating" required>
+            <option value="">Chọn mức độ hài lòng</option>
+            <option value="1">Cần cải thiện</option>
+            <option value="2">Hài lòng</option>
+            <option value="3">Rất hài lòng</option>
+         
+        </select>
+        
+        <label for="comment">Nội dung đánh giá:</label>
+        <textarea id="comment" name="comment" required></textarea>
+        
+        <button type="button" id="submitReview">Đánh giá</button>
+    </form>
+</div>
+
+<div id="reviewResult" class="hidden"></div>
+
+<script>
+    document.getElementById('submitReview').addEventListener('click', function() {
+        var name = document.getElementById('name').value;
+        var rating = document.getElementById('rating').value;
+        var comment = document.getElementById('comment').value;
+        
+        var currentDate = new Date();
+        var dateTime = currentDate.toLocaleString('vi-VN');
+        
+       
+        var formattedName = "@" + name;
+        
+        var reviewResult = document.getElementById('reviewResult');
+        var newReview = document.createElement('div');
+        newReview.innerHTML = `<p><strong></strong> ${formattedName}</p>
+                               <p><strong></strong> ${rating} sao</p>
+                               <p><strong></strong> ${comment}</p>
+                               <p><strong></strong> ${dateTime}</p>`;
+        reviewResult.appendChild(newReview);
+        reviewResult.classList.remove('hidden');
+    });
+</script>
+
+</body>
+</html>

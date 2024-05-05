@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery</title>
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="anh_move.css">
+    
+</head>
+<style>
+    /* CSS styles */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        height: 100vh;
+        background: gainsboro;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .wrapper {
+        width: auto;
+        display: flex;
+        margin: auto;
+        justify-content: space-between;
+    }
+
+    .image {
+        width: 20%;
+        height: 200px;
+        border-radius: 4px;
+        overflow: hidden;
+        margin: 20px 0;
+    }
+
+    .image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: 0.25s;
+    }
+
+    .image:hover img {
+        transform: scale(1.2);
+    }
+
+    .gallery {
+        position: fixed;
+        width: 70%;
+        height: 70%;
+        background: rgba(0, 0, 0, 0.8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: antiquewhite;
+        opacity: 0;
+        pointer-events: none;
+        transition: 0.5s;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .close {
+        position: absolute;
+        top: 15px;
+        right: 25px;
+        font-size: 35px;
+        cursor: pointer;
+    }
+
+    .show {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .gallery_inner img {
+        max-width: 70%;
+        max-height: 70%;
+    }
+
+    .control {
+        font-size: 35px;
+        color: rgb(189, 135, 135);
+        position: absolute;
+        cursor: pointer;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .control.prev {
+        left: 10px;
+        transform: translate(-50%, -50%);
+    }
+
+    .control.next {
+        right: 10px;
+        transform: translate(50%, -50%);
+    }
+    .gallery_inner img {
+    max-width: 300px;
+    max-height: 300px;
+    object-fit: contain; /* Đảm bảo tỉ lệ hình ảnh được bảo toàn và không bị méo khi thay đổi kích thước */
+}
+</style>
+<body>
+    <div class="wrapper">
+        <!-- Image thumbnails -->
+        <div class="image">
+            <img src="/Bài 2/riiu1.jpg" alt="">
+        </div>
+        <div class="image">
+            <img src="/Bài 2/ri5.jpg" alt="">
+        </div>
+        <div class="image">
+            <img src="/Bài 2/riiu3.jpg" alt="">
+        </div>
+        <div class="image">
+            <img src="/Bài 2/riiu4.jpg" alt="">
+        </div>
+        <div class="image">
+            <img src="/Bài 2/tiniu1.jpg" alt="">
+        </div>
+        <div class="image">
+            <img src="/Bài 2/2ce.jpg" alt="">
+        </div>
+
+        <!-- Gallery modal -->
+        <div class="gallery">
+            <i class="fas fa-times close"></i>
+            <div class="gallery_inner">
+                <img src="/Bài 2/tiniu3.jpg"alt="">
+            </div>
+            <div class="control prev">
+                <i class="fas fa-chevron-left"></i>
+            </div>
+            <div class="control next">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </div>
+    </div>
+    <script src="anh_move.js"></script>
+    
+</body>
+</html>

@@ -1,0 +1,750 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap"
+      rel="stylesheet"
+    />
+  
+
+    <title>Website</title>
+  </head>
+  <style>
+  
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #a4cec0;
+}
+
+img {
+  max-width: 100%;
+  width: 100%;
+}
+
+.container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+button {
+  text-align: center;
+  color: #fff;
+  background-color: var(--gray);
+  padding: 0.8rem 2.5rem;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: var(--smooth);
+}
+
+button:hover {
+  background-color: var(--green-l);
+  transition: var(--smooth);
+}
+
+:root {
+  --green: #54b192;
+  --green-l: #a4cec0;
+  --gray: #3f3d56;
+  --smooth: all 0.3s ease-in;
+}
+/* === Overlay === */
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 4;
+  display: none;
+}
+
+#overlay.show {
+  display: initial;
+}
+
+/* === Header === */
+header {
+  position: absolute;
+  width: 100%;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+}
+
+/* logo */
+.navbar__logo img {
+  width: 57px;
+  height: 57px;
+  object-fit: cover;
+}
+
+/* menu */
+.navbar__links {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 60%;
+  height: 100%;
+  background-color: var(--green);
+  z-index: 5;
+  transition: var(--smooth);
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+.navbar__links.navbar__open {
+  transform: translateX(0);
+  opacity: 1;
+  transition: var(--smooth);
+}
+
+.navbar__link {
+  list-style: none;
+  margin: 55px;
+}
+
+.navbar__link a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 300;
+  transition: var(--smooth);
+}
+
+.navbar__link a:hover {
+  color: var(--green);
+  transition: var(--smooth);
+}
+
+.navbar__btn {
+  font-size: 1rem;
+  background-color: var(--green);
+  margin-left: 45px;
+}
+
+/* menu button */
+.navbar__icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 80px;
+  cursor: pointer;
+  transition: var(--smooth);
+  z-index: 6;
+}
+
+.navbar__icon {
+  width: 45px;
+  height: 6px;
+  background-color: var(--gray);
+  border-radius: 5px;
+  transition: var(--smooth);
+  position: relative;
+}
+
+.navbar__icon:before,
+.navbar__icon:after {
+  content: "";
+  position: absolute;
+  width: 45px;
+  height: 6px;
+  background-color: var(--gray);
+  border-radius: 5px;
+  transition: var(--smooth);
+}
+
+.navbar__icon:before {
+  transform: translateY(-12px);
+}
+
+.navbar__icon:after {
+  transform: translateY(12px);
+}
+
+/* button animation */
+.open .navbar__icon {
+  transform: translateX(-50px);
+  background: transparent;
+}
+
+.open .navbar__icon:before {
+  transform: rotate(45deg) translate(35px, -35px);
+}
+.open .navbar__icon:after {
+  transform: rotate(-45deg) translate(35px, 35px);
+}
+
+@media (min-width: 62em) {
+  .navbar__links {
+    position: initial;
+    transform: translateX(0);
+    opacity: 1;
+    background-color: transparent;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  .navbar__link a {
+    color: var(--gray);
+  }
+  .navbar__icons {
+    display: none;
+  }
+  .navbar__btn {
+    background-color: var(--gray);
+  }
+}
+
+/* === Banner === */
+#banner {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.banner__img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: -1;
+}
+
+.banner__heading {
+  max-width: 300px;
+  margin: 0 auto;
+  text-align: center;
+  color: var(--gray);
+}
+
+.banner__heading h1 {
+  font-size: 2.25rem;
+  padding-top: 4em;
+  margin-bottom: 0.8em;
+}
+
+.banner__heading p {
+  font-weight: 300;
+  line-height: 2em;
+  margin-bottom: 1.5em;
+}
+
+.banner__btn {
+  font-size: 1rem;
+}
+
+.banner__socials {
+  margin-top: 3em;
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 1.5rem;
+}
+
+.banner__socials a {
+  color: var(--gray);
+  transition: var(--smooth);
+}
+
+.banner__socials a:hover {
+  color: var(--green-l);
+  transition: var(--smooth);
+}
+
+@media (min-width: 62em) {
+  .banner__heading {
+    text-align: initial;
+    margin: 0;
+    padding-top: 0;
+  }
+  .banner__socials {
+    justify-content: flex-start;
+  }
+  .banner__socials a {
+    margin-right: 45px;
+  }
+  .banner__img {
+    width: 60%;
+  }
+}
+
+/* === Things === */
+#things {
+  position: relative;
+  overflow-x: hidden;
+  margin-top: 15em;
+}
+
+#things h2 {
+  text-align: center;
+  color: var(--gray);
+  margin-bottom: 3em;
+}
+h2{
+  font-size: 40px;
+}
+
+.things__dec {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateX(-60%);
+  z-index: -1;
+}
+
+.things__dec:nth-child(2) {
+  top: initial;
+  left: initial;
+  bottom: 15%;
+  right: 0;
+  transform: translateX(60%);
+  z-index: -1;
+}
+
+.things__item {
+  margin: 3em 0;
+}
+
+.things__item img {
+  padding-bottom: 4em;
+}
+
+.things__item--heading {
+  text-align: center;
+  color: var(--gray);
+}
+
+.things__item--heading p {
+  font-weight: 300;
+  line-height: 2em;
+  max-width: 300px;
+  margin: 0 auto;
+  padding-top: 1em;
+}
+
+@media (min-width: 62em) {
+  .things__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+  }
+  .things__item img {
+    width: 40%;
+    padding-bottom: 0;
+  }
+  .things__item--heading {
+    width: 45%;
+    text-align: initial;
+  }
+  .things__item--heading p {
+    max-width: 500px;
+    margin: 0;
+  }
+  .things__item:nth-child(odd) img {
+    order: 2;
+    width: 40%;
+    padding-bottom: 0;
+  }
+  .things__item--heading:nth-child(odd) {
+    order: 1;
+    width: 45%;
+    text-align: initial;
+  }
+}
+
+/* === Works === */
+#works {
+  padding-top: 10em;
+  position: relative;
+  overflow-x: hidden;
+}
+
+#works h2 {
+  text-align: center;
+  color: var(--gray);
+}
+
+.works__dec {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateX(-60%);
+  z-index: -1;
+}
+.works__dec:nth-child(2) {
+  position: absolute;
+  top: initial;
+  left: initial;
+  bottom: 15%;
+  right: 0;
+  transform: translateX(60%);
+  z-index: -1;
+}
+
+.works__img--single {
+  margin: 2em 0;
+}
+
+.works__img--single:nth-child(odd) {
+  padding-top: 5em;
+}
+
+.works__img--single:nth-child(3) {
+  margin-top: -5em;
+}
+
+.works__btn {
+  text-align: center;
+  margin-top: 8em;
+}
+
+.works__btn button {
+  font-size: 1rem;
+}
+
+@media (min-width: 62em) {
+  #works h2 {
+    margin-bottom: 3em;
+  }
+  .works__img {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .works__img--single {
+    margin: 0 5em;
+    width: 35%;
+  }
+  .works__img--single:nth-child(3) {
+    margin-top: 0;
+  }
+}
+
+/* === Footer === */
+#footer {
+  overflow: hidden;
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.footer__img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translateX(25%);
+  z-index: -1;
+}
+
+.footer__heading {
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+  color: var(--gray);
+}
+
+.footer__contact {
+  margin-top: 2em;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.footer__contact a {
+  text-decoration: none;
+  color: var(--gray);
+}
+
+.footer__dec {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-45%);
+  z-index: -1;
+}
+
+@media (min-width: 62em) {
+  .footer__img {
+    top: -15%;
+    right: 0;
+    transform: translateX(32%);
+    width: 60%;
+  }
+  .footer__heading {
+    text-align: initial;
+    margin: 0;
+  }
+  .footer__contact {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+
+
+.section-title {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 60px; 
+}
+.section-title h2 {
+    font-size: 50px;
+    color: var(--text-color);
+    text-transform: uppercase;
+    margin-bottom: 30px;
+}
+.section-title h2::before {
+    content: attr(data-title);
+    display: block;
+    color: var(--sub-color);
+    font-size: 30px;
+    font-family: 'Dancing Script';
+
+}
+.animate_animated {color:#000;
+}
+
+.animate_tada {color:#000;}
+
+.animate_infinite {color:#000;}
+
+@keyframes tada {
+    0% { transform: scale(1); }
+    10%, 20% { transform: scale(0.9) rotate(-3deg); }
+    30%, 50%, 70%, 90% { transform: scale(1.1) rotate(3deg); }
+    40%, 60%, 80% { transform: scale(1.1) rotate(-3deg); }
+    100% { transform: scale(1) rotate(0); }
+}
+
+.animate_tada {
+    animation: tada 2s infinite;
+}
+.things__item img:hover {
+  transform: scale(1.05); /* Phóng to ảnh khi hover */
+  transition: transform 0.3s ease; /* Thêm hiệu ứng transition mềm mại */
+}
+.works__img--single img:hover {
+  transform: scale(1.05); /* Phóng to ảnh khi hover */
+  transition: transform 0.3s ease; /* Thêm hiệu ứng transition mềm mại */
+}
+#video h2 {
+  text-align: center;
+  color: var(--gray);
+}
+
+    </style>
+  <body>
+        <!-- overlay -->
+        <section id="overlay"></section>
+        <!-- header -->
+        <header>
+          <div class="container">
+            <nav class="navbar">
+           
+              
+              <!-- links -->
+              <ul class="navbar__links">
+                <li class="navbar__link"><a href="#works">Sở thích</a></li>
+                <li class="navbar__link"><a href="#things">Khám phá</a></li>
+                <li class="navbar__link"><a href="#works">Sở thích</a></li>
+                <a href="#footer"><button class="navbar__btn">Liên lạc</button></a>
+              </ul>
+              <!-- menu button -->
+              <div class="navbar__icons">
+                <div class="navbar__icon"></div>
+              </div>
+            </nav>
+          </div>
+        </header>
+        <!-- banner -->
+        <section id="banner">
+          <div class="container">
+            <!-- img -->
+            <div class="banner__img">
+              <img src="/Bài 1/banner-img.png" alt="" />
+            </div>
+            <!-- heading -->
+            <div class="banner__heading">
+              <h1>Hello, I'm Carolina</h1>
+              <p>
+                Nguyễn Thị Trúc Trinh, là sinh viên năm ba tại Đại học Công nghiệp TP. Hồ Chí Minh. Với sự nhiệt huyết và ham học hỏi, tôi dành thời gian của mình để chăm chỉ học tập và tham gia các hoạt động xã hội. Sự nỗ lực của đó đã giúp tôi tiến bộ trong hành trình học vấn và phát triển bản thân.
+              </p>
+              <a href="#"><button class="banner__btn">Xem thêm</button></a>
+              <div class="banner__socials">
+                <a href="#"><i class="fab fa-dribbble"></i></a>
+                <a href="#"><i class="fab fa-behance"></i></a>
+                <a href="https://www.linkedin.com/feed/"><i class="fab fa-linkedin-in"></i></a>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- things -->
+        <section id="things">
+          <div class="container">
+         
+           
+            <!-- heading -->
+            <div class="section-title">
+              <h2 class="animate_animated
+                         animate_tada
+                         animate_infinite">Những nơi tôi đã ghé thăm</h2>
+                        
+            <!-- item 1 -->
+            <div class="things__item">
+              <!-- img -->
+              <img src="/Bài 1/xinh.jpg" alt="" width="879px" height="654px" />
+              <!-- text -->
+              <div class="things__item--heading">
+                <h3> Le Jardin</h3>
+                <p>
+                  
+Có thể bạn đã biết hoặc chưa biết về Le Jardin - một chiếc quán nho nhỏ mang nét hoài cổ châu Âu. Mình xin được review tất tần tật để bạn có thêm duyên cớ đến chơi cùng Le Jardin nhé!
+🌿 Lejardin có góc vườn nhỏ: với những chậu hoa xinh xắn, có mảng tường gạch cổ, đài phun nước róc rách để bạn có thể chill cùng với thiên nhiên mỗi khi cơ thể cần mảng xanh. 
+Jardin còn có góc phòng ấm áp: cùng những bức tranh miền quê Pháp cổ điển và 2 góc ban công đầy hoa lá để bạn có thể  ngắm phố phường hay toàn cảnh khu vườn nhỏ. Không gian này sẽ rất thích hợp cho bạn trốn nóng, trú mưa, đọc sách, học tập và làm việc...
+🥯Món ăn và thức uống nhà mình đa dạng từ cà phê, trà trái cây, nước ép đến bánh lạnh, bánh nóng và cả món Á/Âu như pasta, mì Ý, steak… để bạn có thể lựa chọn cho cả 3 buổi ăn. Tất cả đều được chăm chút từ nguyên liệu đến trang trí và đương nhiên là khẩu vị cũng rất đặc sắc để bạn nán lại lâu hơn... 
+Dù là hẹn hò, tâm tình hay đến để tìm cho mình một góc riêng tư, Le Jardin cũng hy vọng bạn có thêm duyên cớ để đến chơi và thưởng thức tất cả món ngon của Le Jardin làm ra bằng tất cả tâm huyết và tình yêu dành cho ẩm thực. 
+Chào bạn đến chơi! 
+                </p>
+              </div>
+            </div>
+            <!-- item 2 -->
+            <div class="things__item">
+              <!-- img -->
+              <img src="/Bài 1/dinh.jpg" alt=""  width="879px" height="654px" />
+              <!-- text -->
+              <div class="things__item--heading">
+                <h3>Dinh Độc Lập</h3>
+                <p>
+                  Trên bản đồ du lịch Việt Nam,  luôn là cái tên thu hút, không chỉ bởi vẻ đẹp năng động, hiện đại, mà còn bởi những giá trị văn hóa, lịch sử còn ghi dấu ở nơi này. Và chẳng phải ngẫu nhiên mà Dinh Độc Lập lại trở thành một trong những biểu tượng bất diệt của thành phố Hồ Chí Minh. Nơi đây đã chứng kiến nhiều cột mốc quan trọng trong lịch sử đấu tranh giành độc lập của dân tộc, đại diện cho sức sống bền bỉ, tinh thần chiến đấu quật cường của các thế hệ cha ông đi trước. Nếu có dịp đi du lịch Sài Gòn, bạn nhất định phải ghé thăm Dinh Độc Lập đấy nhé.
+                </p>
+              </div>
+            </div>
+            <!-- item 3 -->
+            <div class="things__item">
+              <!-- img -->
+              <img src="/Bài 1/đẹp.jpg" alt=""  width="879px" height="654px" />
+              <!-- text -->
+              <div class="things__item--heading">
+                <h3>Tịnh xá Ngọc Trung</h3>
+                <p>
+                  Không phải ngẫu nhiên mà hơn 60 năm nay, trải qua bao thăng trầm của lịch sử, Tịnh xá Ngọc Trung với lối kiến trúc Đông Á, màu sắc sẫm, hoa tiết mới lạ tạo nên sự cuốn hút, tìm hiểu và nghiên cứu của nhiều người. Đó chính là dấu ấn của thời gian với biết bao sự đồng tâm hợp sức của hàng tứ chúng Phật tử tô đắp nên, góp thêm một nét văn hoá Phật giáo vào bối cảnh miền Tây sông nước hiền hoà bình dị.
+
+                  Khách hành hương đến đây đều muốn lưu lại những bức ảnh về hình thức và kiểu dáng của tịnh xá, lòng trở nên yên tịnh bởi sự bảo vệ của lan can bằng cánh sen hồng xung quang chánh điện, tạo cảm giác cho con người như đang hiện diện trong thế giới Cực Lạc.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- works -->
+        <section id="works">
+          <div class="container">
+           
+           
+            <!-- heading -->
+            <div class="section-title">
+              <h2 class="animate_animated
+                         animate_tada
+                         animate_infinite">Sở thích của tôi</h2>
+            <!-- img -->
+            <div class="works__img">
+              <div class="works__img--single">
+                <img src="/Bài 1/work-1.png" alt="bag" />
+              </div>
+              <div class="works__img--single">
+                <img src="/Bài 1/work-2.png" alt="plate" />
+              </div>
+              <div class="works__img--single">
+                <img src="/Bài 1/work-3.png" alt="women" />
+              </div>
+              <div class="works__img--single">
+                <img src="/Bài 1/work-4.png" alt="piggy bank" />
+              </div>
+            </div>
+            <!-- btn -->
+            <div class="works__btn">
+              <a href="#"><button>Xem thêm</button></a>
+            </div>
+
+          </div>
+        </section>
+        <br>
+        <section id="video">
+          <div class="section-title">
+            <h2 class="animate_animated
+                       animate_tada
+                       animate_infinite">Video tôi yêu thích</h2>
+          <video width="640" height="360" controls>
+            <source src="/Bài 1/1409899-uhd_3840_2160_25fps.mp4" type="video/mp4">
+         
+          </video>
+        </section>
+
+        <!-- footer -->
+        <footer id="footer">
+          <div class="container">
+          
+            <!-- img -->
+            <div class="footer__img">
+              <img src="/Bài 1/footer-img.png" alt="illustration of women" />
+            </div>
+            <!-- heading -->
+            <div class="footer__heading">
+              <div class="section-title">
+                <h2 class="animate_animated
+                           animate_tada
+                           animate_infinite">Sẵn sàng để thử những điều mới?</h2>
+              <!-- contact -->
+              <div class="footer__contact">
+                <a href="tel:901234567">
+                  <i class="fas fa-phone-alt"></i>
+                  <p>90-123-4567</p>
+                </a>
+                <a href="mailto:info@me.com">
+                  <i class="fas fa-envelope"></i>
+                  <p>tructrinh999999999@gmail.com</p>
+                </a>
+              </div>
+              <div class="banner__socials">
+                <a href="#"><i class="fab fa-dribbble"></i></a>
+                <a href="#"><i class="fab fa-behance"></i></a>
+                <a href="https://www.linkedin.com/feed/"><i class="fab fa-linkedin-in"></i></a>
+              </div>
+            </div>
+          </div>
+        </footer>
+        <!-- fontawesome -->
+        <script
+          src="https://kit.fontawesome.com/28c0af3030.js"
+          crossorigin="anonymous"
+        ></script>
+        <!-- main js -->
+        <script src="/bài1.js"></script>
+      </body>
+    </html>
